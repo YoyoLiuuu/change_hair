@@ -1,0 +1,6 @@
+# mediapipe >= 0.10.22 needs system libGLESv2; 0.10.21 runs on a bare Linux/WSL install
+mediapipe==0.10.21
+opencv-python-headless
+numpy<2
+flask
+onnxruntime

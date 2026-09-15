@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hair Studio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💇</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Hair Studio</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn" id="uploadBtn" type="button">Upload photo</button>
+      <button class="btn primary" id="downloadBtn" type="button" disabled>Download</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage" id="stage">
+      <div class="canvas-area" id="canvasArea">
+        <button class="dropzone" id="dropzone" type="button">
+          <span class="dz-icon" aria-hidden="true"></span>
+          <span class="dz-title">Drop a photo here, or click to upload</span>
+          <span class="dz-sub">Face the camera with your hair visible and good light for the best results. You can also paste an image.</span>
+        </button>
+        <div class="canvas-wrap" id="canvasWrap" hidden>
+          <canvas id="canvas"></canvas>
+          <div class="divider" id="divider" hidden><span class="knob" aria-hidden="true"></span></div>
+          <span class="tag tag-before" id="tagBefore" hidden>Before</span>
+          <span class="tag tag-after" id="tagAfter" hidden>After</span>
+        </div>
+        <div class="busy" id="busy" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="busyText">Finding your hair…</span>
+        </div>
+      </div>
+      <div class="stage-bar">
+        <button class="chip" id="compareBtn" type="button" aria-pressed="false" disabled>Before / after</button>
+        <button class="chip" id="maskBtn" type="button" aria-pressed="false" disabled>Show detected hair</button>
+        <button class="chip" id="resetBtn" type="button" disabled>Reset</button>
+        <span class="status" id="styleStatus"></span>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <nav class="tabs" role="tablist">
+        <button class="tab" role="tab" data-tab="looks" aria-selected="true">Looks</button>
+        <button class="tab" role="tab" data-tab="colour" aria-selected="false">Colour</button>
+        <button class="tab" role="tab" data-tab="style" aria-selected="false">Cut &amp; style</button>
+      </nav>
+
+      <div class="tab-body" id="tab-looks" role="tabpanel">
+        <p class="lede">Salon colours and techniques. Pick one, then fine-tune it in <em>Colour</em>.</p>
+        <div id="lookGroups"></div>
+      </div>
+
+      <div class="tab-body" id="tab-colour" role="tabpanel" hidden>
+        <h3 class="section-title">Technique</h3>
+        <div class="segmented" id="techniques"></div>
+        <p class="hint" id="techHint"></p>
+
+        <h3 class="section-title">Colours</h3>
+        <div class="wells">
+          <button class="well" type="button" data-well="base" aria-pressed="true">
+            <span class="well-swatch"></span>
+            <span class="well-text"><span class="well-label">Main colour</span><span class="well-name"></span></span>
+          </button>
+          <button class="well" type="button" data-well="light" aria-pressed="false">
+            <span class="well-swatch"></span>
+            <span class="well-text"><span class="well-label" id="lightLabel">Highlight colour</span><span class="well-name"></span></span>
+          </button>
+        </div>
+
+        <div class="picker">
+          <div class="sv" id="sv"><span class="sv-thumb" id="svThumb"></span></div>
+          <input class="hue" id="hue" type="range" min="0" max="360" step="1" aria-label="Hue">
+          <div class="picker-row">
+            <span class="hex-preview" id="hexPreview"></span>
+            <input class="hex" id="hex" type="text" maxlength="7" spellcheck="false" aria-label="Hex colour">
+            <span class="shade-name" id="shadeName"></span>
+          </div>
+        </div>
+
+        <h3 class="section-title">Hair colour shades</h3>
+        <div class="shades" id="shades"></div>
+
+        <h3 class="section-title">Adjust</h3>
+        <div id="colourSliders"></div>
+      </div>
+
+      <div class="tab-body" id="tab-style" role="tabpanel" hidden>
+        <p class="lede">Preview cuts and textures. These are fast approximations built from your own hair, so they look best on straight-on photos.</p>
+        <div class="notice" id="styleNotice" hidden></div>
+        <div class="style-grid" id="styleGrid"></div>
+        <h3 class="section-title">Fine-tune</h3>
+        <div id="styleSliders"></div>
+      </div>
+    </aside>
+  </main>
+
+  <input type="file" id="fileInput" accept="image/*" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
