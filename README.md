@@ -2,6 +2,14 @@
 
 A local website: upload a photo, then try new hair colours, salon techniques and cuts live in the browser.
 
+## Demo
+
+![Hair Studio demo: upload a photo, try salon looks, compare before and after, fine-tune the colour, then preview cuts and styles](docs/demo.gif)
+
+Upload a photo, click through the salon looks, drag the before/after divider, fine-tune the colour,
+then preview a bob, beach waves and curtain bangs. The same clip is in [`docs/demo.mp4`](docs/demo.mp4)
+at full resolution. Demo photo from [Pexels](https://www.pexels.com/photo/774909/).
+
 ## Run it
 
 ```bash
